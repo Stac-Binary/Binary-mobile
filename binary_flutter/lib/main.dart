@@ -1,7 +1,9 @@
 import 'package:binary_flutter/constants/constants.dart';
+
 import 'package:binary_flutter/provider/login_provider.dart';
 import 'package:binary_flutter/screens/home/home_page.dart';
 import 'package:binary_flutter/screens/login/login_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
