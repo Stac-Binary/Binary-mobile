@@ -1,8 +1,6 @@
 import 'package:binary_flutter/constants/constants.dart';
-import 'package:binary_flutter/provider/dog_provider.dart';
 import 'package:binary_flutter/services/sizes/sizeConfig.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../services/sizes/sizeConfig.dart';
 
@@ -62,64 +60,90 @@ class _HomePageState extends State<HomePage>
           Expanded(
             child: Container(
               height: double.infinity,
-              child: ListView.builder(
-                itemCount: 20,
-                itemBuilder: (context, int index) {
-                  return Card(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(20),
-                        vertical: getProportionateScreenHeight(10)),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: getProportionateScreenHeight(10),
-                                horizontal: getProportionateScreenWidth(10)),
-                            child: Icon(
-                              Icons.looks_one,
-                              color: kPink,
-                              size: 32,
+              child: FutureBuilder<MainModel>(
+                future:
+                fetchMain(Provider.of<LoginProvider>(context).model.data.id),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Error: ${snapshot.error}',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  } else {
+                    final list = snapshot.data.data.mld;
+                    final secList = snapshot.data.data.mbd;
+                    List<dynamic> result = [];
+                    result.addAll(list);
+                    result.addAll(secList);
+                    print(list);
+                    return ListView.builder(
+                      itemCount: result.length,
+                      itemBuilder: (context, int index) {
+                        return Card(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: getProportionateScreenWidth(20),
+                              vertical: getProportionateScreenHeight(10)),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: getProportionateScreenHeight(10),
+                                      horizontal:
+                                      getProportionateScreenWidth(10)),
+                                  child: Icon(
+                                    Icons.looks_one,
+                                    color: kPink,
+                                    size: 32,
+                                  ),
+                                ),
+                                Container(
+                                    height: getProportionateScreenHeight(60),
+                                    width: getProportionateScreenWidth(1),
+                                    color: kPink),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                          left: getProportionateScreenHeight(10),
+                                          top: getProportionateScreenWidth(8)),
+                                      child: Text(
+                                        result[index].day,
+                                        style: kNanumBold.copyWith(fontSize: 20),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:
+                                      EdgeInsets.only(left: 10, bottom: 8),
+                                      child: Text(
+                                        "병원 예약",
+                                        style: kNanumBold.copyWith(fontSize: 16),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
                           ),
-                          Container(
-                              height: getProportionateScreenHeight(60),
-                              width: getProportionateScreenWidth(1),
-                              color: kPink),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(
-                                    left: getProportionateScreenHeight(10),
-                                    top: getProportionateScreenWidth(8)),
-                                child: Text(
-                                  "2020.07.06 병원예약",
-                                  style: kNanumBold.copyWith(fontSize: 20),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: 10, bottom: 8),
-                                child: Text(
-                                  "병원 예약",
-                                  style: kNanumBold.copyWith(fontSize: 16),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  );
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ),
           )
         ],
-      ),
     );
   }
+
 
   Widget getDogData(String dogName, String dogBreed, String dogBloodType) {
     return Container(

@@ -35,7 +35,7 @@ class _BloodTracePageState extends State<BloodTracePage>
             height: double.infinity,
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: 20,
+              itemCount: 10,
               itemBuilder: (context, int index) {
                 return ItemContainer(
                   text: "대구 달서구 00동물병원",
