@@ -7,7 +7,9 @@ class ItemContainer extends StatelessWidget {
   final String imageURL;
   final Function onTap;
 
-  const ItemContainer({Key key, @required this.text, @required this.imageURL, this.onTap}) : super(key: key);
+  const ItemContainer(
+      {Key key, @required this.text, @required this.imageURL, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +32,31 @@ class ItemContainer extends StatelessWidget {
                   offset: Offset(0, 0),
                 )
               ]),
-          child: Row(
-            children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(10),
-                      vertical: getProportionateScreenHeight(10)),
-                  child: Image.asset(imageURL)),
-              Container(
-                height: getProportionateScreenHeight(60),
-                width: getProportionateScreenWidth(2),
-                color: kPink,
-              ),
-              SizedBox(
-                width: getProportionateScreenWidth(10),
-              ),
-              Text(
-                text,
-                style: kNanumLight.copyWith(fontSize: 24),
-              ),
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(10),
+                        vertical: getProportionateScreenHeight(10)),
+                    child: Image.asset(imageURL)),
+                Container(
+                  height: getProportionateScreenHeight(60),
+                  width: getProportionateScreenWidth(2),
+                  color: kPink,
+                ),
+                SizedBox(
+                  width: getProportionateScreenWidth(10),
+                ),
+                Text(
+                  text,
+                  style: kNanumLight.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         onTap: onTap,

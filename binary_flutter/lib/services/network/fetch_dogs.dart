@@ -7,7 +7,9 @@ final client = http.Client();
 final baseUrl = "http://10.80.161.119:8000/api";
 Future<List<DogData>> getDogs(String id) async {
   try {
+    print("ASDF");
     final response = await client.get('$baseUrl/dog?userId=$id');
+    print(response.body);
     if (response.statusCode == 200) {
       final decoded = json.decode(response.body);
       return (decoded["data"]["doglist"] as List)

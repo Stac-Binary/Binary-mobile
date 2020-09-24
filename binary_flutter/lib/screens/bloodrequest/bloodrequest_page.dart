@@ -17,7 +17,9 @@ class BloodGlobal {
   static int selectedIdx;
   static String when;
   static String time;
-  static HospitalData model;
+  static String service;
+  static HospitalData model =
+      HospitalData(address: "test", hospitalName: "Test HPS", idx: 0);
 }
 
 class BloodrequestPage extends StatefulWidget {
@@ -219,6 +221,7 @@ class _RequestBloodLasterState extends State<RequestBloodLaster> {
                                         .model
                                         .data
                                         .id,
+                                    item.dogs[item.selected].id,
                                     BloodGlobal.selectedIdx.toString(),
                                     item.dogs[item.selected].bloodType,
                                     BloodGlobal.time,

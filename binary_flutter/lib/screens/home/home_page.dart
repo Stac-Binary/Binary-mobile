@@ -134,33 +134,36 @@ class _HomePageState extends State<HomePage>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                dogBreed,
-                style: kNanumBold.copyWith(fontSize: 16, color: kWhite),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    dogBreed,
+                    style: kNanumBold.copyWith(fontSize: 16, color: kWhite),
+                  ),
+                  SizedBox(height: getProportionateScreenHeight(5)),
+                  Text(
+                    "견종",
+                    style: kNanumLight.copyWith(fontSize: 12, color: kWhite),
+                  ),
+                ],
               ),
               SizedBox(
                 width: getProportionateScreenWidth(20),
               ),
-              Text(
-                "DEA $dogBloodType",
-                style: kNanumBold.copyWith(fontSize: 16, color: kWhite),
-              ),
-            ],
-          ),
-          SizedBox(height: getProportionateScreenHeight(5)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "견종",
-                style: kNanumLight.copyWith(fontSize: 12, color: kWhite),
-              ),
-              SizedBox(
-                width: getProportionateScreenWidth(46),
-              ),
-              Text(
-                "혈액형",
-                style: kNanumLight.copyWith(fontSize: 12, color: kWhite),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "DEA $dogBloodType",
+                    style: kNanumBold.copyWith(fontSize: 16, color: kWhite),
+                  ),
+                  SizedBox(height: getProportionateScreenHeight(5)),
+                  Text(
+                    "혈액형",
+                    style: kNanumLight.copyWith(fontSize: 12, color: kWhite),
+                  ),
+                ],
               ),
             ],
           ),

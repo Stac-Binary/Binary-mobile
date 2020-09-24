@@ -19,7 +19,7 @@ class DogData {
         id: json["id"],
         dogName: json["dogName"],
         breed: json["breed"],
-        weight: json["weight"].toString(),
-        bloodType: json["bloodType"],
+        weight: "${json["weight"]}",
+        bloodType: "${json["bloodType"]}",
       );
 }

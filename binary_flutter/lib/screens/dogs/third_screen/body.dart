@@ -49,8 +49,9 @@ class Body extends StatelessWidget {
           RoundedButton(
             text: "다음",
             press: () async {
-              final response =
-                  await fetchDogs(id, name, breed, weight, double.parse(dea));
+              print("${dea.contains(".") ? double.parse(dea) : int.parse(dea) * 1.0}");
+              final response = await fetchDogs(id, name, breed, weight,
+                  dea.contains(".") ? double.parse(dea) : int.parse(dea) * 1.0);
               if (response.data != null)
                 Navigator.pushAndRemoveUntil(
                     context,

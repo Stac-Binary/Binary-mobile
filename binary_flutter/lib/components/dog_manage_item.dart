@@ -1,6 +1,6 @@
 import 'package:binary_flutter/constants/constants.dart';
-import 'package:binary_flutter/provider/login_provider.dart';
-import 'package:binary_flutter/screens/dogs/second_screen/dog_register_second.dart';
+import 'package:binary_flutter/models/dogs_model.dart';
+import 'package:binary_flutter/provider/dog_provider.dart';
 import 'package:binary_flutter/services/sizes/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,9 +9,10 @@ class DogManageItem extends StatelessWidget {
   final String dogName;
   final String dogBreed;
   final String dogBlood;
-
+  final DogData dog;
   const DogManageItem({
     Key key,
+    @required this.dog,
     @required this.dogName,
     @required this.dogBreed,
     @required this.dogBlood,
@@ -40,10 +41,20 @@ class DogManageItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            CircleAvatar(
-              radius: 36.0,
-              backgroundImage: AssetImage(
-                'assets/images/colde.jpg',
+            GestureDetector(
+              onTap: () {
+                print("PRS");
+                Provider.of<DogProvider>(context, listen: false).selected =
+                    Provider.of<DogProvider>(context, listen: false)
+                        .dogs
+                        .indexOf(dog);
+                Navigator.pop(context);
+              },
+              child: CircleAvatar(
+                radius: 36.0,
+                backgroundImage: AssetImage(
+                  'assets/images/colde.jpg',
+                ),
               ),
             ),
             Column(

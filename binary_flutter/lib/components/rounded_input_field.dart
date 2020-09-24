@@ -7,6 +7,55 @@ const kInputBorderStyle = OutlineInputBorder(
   borderRadius: BorderRadius.all(Radius.circular(15.0)),
   borderSide: BorderSide(color: Colors.white, width: 0.5),
 );
+const kInputBorderStyle2 = OutlineInputBorder(
+  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+  borderSide: BorderSide(color: Colors.grey, width: 0.5),
+);
+
+class RoundedTextField2 extends StatelessWidget {
+  const RoundedTextField2({
+    Key key,
+    @required this.hintText,
+    @required this.controller,
+    @required this.node,
+  }) : super(key: key);
+  final FocusNode node;
+  final String hintText;
+  final TextEditingController controller;
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    return SizedBox(
+      width: double.infinity,
+      height: getProportionateScreenHeight(45),
+      child: TextField(
+        maxLines: 1,
+        style: TextStyle(
+          color: Color(0xFF707070),
+          fontSize: 16,
+        ),
+        controller: controller,
+        focusNode: node,
+        decoration: InputDecoration(
+          filled: false,
+          hintText: hintText,
+          hintStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFCCCCCC),
+          ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          border: kInputBorderStyle2,
+          enabledBorder: kInputBorderStyle2,
+          disabledBorder: kInputBorderStyle2,
+          focusedBorder: kInputBorderStyle2,
+          errorBorder: kInputBorderStyle2,
+          focusedErrorBorder: kInputBorderStyle2,
+        ),
+      ),
+    );
+  }
+}
 
 class RoundedTextField extends StatelessWidget {
   const RoundedTextField({
