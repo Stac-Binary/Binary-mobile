@@ -1,4 +1,5 @@
 import 'package:binary_flutter/constants/constants.dart';
+import 'package:binary_flutter/screens/blooddonation/blood_donation_page.dart';
 import 'package:binary_flutter/screens/bloodrequest/bloodrequest_page.dart';
 import 'package:binary_flutter/screens/bloodtrace/bloodtrace_page.dart';
 import 'package:binary_flutter/screens/home/home_page.dart';
@@ -136,6 +137,7 @@ class _RoutePageState extends State<RoutePage> {
               ),
               title: Text('헌혈 내역'),
               onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder : (context) => BloodDonationPage()));
               },
             ),
             Divider(),
@@ -145,7 +147,9 @@ class _RoutePageState extends State<RoutePage> {
                 color: kPink,
               ),
               title: Text('헌혈 혜택'),
-              onTap: () {},
+              onTap: () {
+                
+              },
             ),
             Divider(),
             ListTile(
@@ -154,7 +158,9 @@ class _RoutePageState extends State<RoutePage> {
                 color: kPink,
               ),
               title: Text('앱정보'),
-              onTap: () {},
+              onTap: () {
+
+              },
             ),
             Divider(),
           ],
