@@ -42,13 +42,12 @@ class _BodyState extends State<Body> {
             Positioned(
               child: Text(
                 "수혈 요청 내역",
-                style: TextStyle(
+                style: kNanumExtraBold.copyWith(
                   color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
                 ),
               ),
-              top: getProportionateScreenHeight(30),
+              top: getProportionateScreenHeight(32),
               left: getProportionateScreenWidth(20),
             ),
             Positioned(
@@ -58,9 +57,9 @@ class _BodyState extends State<Body> {
                 child: SearchBox(
                   textController: controller,
                   onPress: () async {
-                    final respones = await fetchHospital(controller.text);
+                    final response = await fetchHospital(controller.text);
                     setState(() {
-                      datas = respones == null ? [] : respones.data;
+                      datas = response == null ? [] : response.data;
                     });
                   },
                 ),
