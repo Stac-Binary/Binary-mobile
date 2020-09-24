@@ -7,41 +7,63 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      overflow: Overflow.visible,
-      children: <Widget>[
-        Positioned(
-          child: Container(
-            color: kPink,
-            width: SizeConfig.screenWidth,
-            height: getProportionateScreenHeight(200),
-          ),
+    return Column(
+      children: [
+        Stack(
+          overflow: Overflow.visible,
+          children: <Widget>[
+            Positioned(
+              child: Container(
+                color: kPink,
+                width: SizeConfig.screenWidth,
+                height: getProportionateScreenHeight(200),
+              ),
+            ),
+            Positioned(
+              child: CircleAvatar(
+                radius: 42.0,
+                backgroundImage: AssetImage(
+                  'assets/images/colde.jpg',
+                ),
+              ),
+              left: getProportionateScreenWidth(50),
+              top: getProportionateScreenHeight(46),
+            ),
+            Positioned(
+              child: getDogData("풍원이", "리트리버", "DEA 1.1"),
+              right: getProportionateScreenWidth(80),
+              top: getProportionateScreenHeight(50),
+            ),
+            Positioned(
+              child: Container(
+                child: Image.asset('assets/images/mainimage.png'),
+              ),
+              left: getProportionateScreenWidth(32),
+              top: getProportionateScreenHeight(150),
+            ),
+          ],
         ),
-        Positioned(
-          child: CircleAvatar(
-            radius: 42.0,
-            backgroundImage: AssetImage(
-              'assets/images/colde.jpg',
+        SizedBox(
+          height: getProportionateScreenHeight(200),
+        ),
+        Expanded(
+          child: Container(
+            child: SingleChildScrollView(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 10,
+                  itemBuilder: (context, int index) {
+                    return Card(
+                      child: Text("안녕"),
+                    );
+                  }),
             ),
           ),
-          left: getProportionateScreenWidth(50),
-          top: getProportionateScreenHeight(46),
-        ),
-        Positioned(
-          child: getDogData("풍원이", "리트리버", "DEA 1.1"),
-          right: getProportionateScreenWidth(80),
-          top: getProportionateScreenHeight(50),
-        ),
-        Positioned(
-          child: Container(
-            child: Image.asset('assets/images/mainimage.png'),
-          ),
-          left: getProportionateScreenWidth(32),
-          top: getProportionateScreenHeight(150),
-        ),
+        )
       ],
     );
   }
