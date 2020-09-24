@@ -63,6 +63,7 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
       controller: controller,
       textAlignVertical: TextAlignVertical.bottom,
       focusNode: nameNode,
+      readOnly: text == "혈액형",
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,

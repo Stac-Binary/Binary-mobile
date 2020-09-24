@@ -139,20 +139,25 @@ class ImageCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          image,
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 15,
-              color: color,
-              fontWeight: FontWeight.bold,
+      child: title == ""
+          ? Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(20)),
+              child: image)
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                image,
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
     );
   }
 }
