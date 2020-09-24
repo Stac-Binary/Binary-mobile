@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage>
                                                 getProportionateScreenWidth(
                                                     10)),
                                         child: Icon(
-                                          Icons.looks_one,
+                                          Icons.today,
                                           color: kPink,
                                           size: 32,
                                         ),
