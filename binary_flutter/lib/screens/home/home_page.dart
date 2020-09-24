@@ -2,6 +2,8 @@ import 'package:binary_flutter/constants/constants.dart';
 import 'package:binary_flutter/services/sizes/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
+import '../../services/sizes/sizeConfig.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -52,15 +54,14 @@ class _HomePageState extends State<HomePage>
         ),
         Expanded(
           child: Container(
-            child: SingleChildScrollView(
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: (context, int index) {
-                    return Card(
-                      child: Text("안녕"),
-                    );
-                  }),
+            height: double.infinity,
+            child: ListView.builder(
+              itemCount: 20,
+              itemBuilder: (context, int index) {
+                return Card(
+                  child: Text("안녕 $index"),
+                );
+              },
             ),
           ),
         )

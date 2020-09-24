@@ -1,7 +1,6 @@
+import 'package:binary_flutter/screens/dogs/first_screen/dog_register_first.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../main.dart';
 
 class RegisterComplete extends StatelessWidget {
   final int type;
@@ -15,8 +14,8 @@ class RegisterComplete extends StatelessWidget {
     print(strs2);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.delayed(Duration(seconds: 1), () {
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (ctx) => MyApp()), (route) => false);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (ctx) => DogRegisterFirst()));
       });
     });
     return Scaffold(
