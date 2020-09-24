@@ -1,4 +1,6 @@
+import 'package:binary_flutter/components/rounded_button.dart';
 import 'package:binary_flutter/components/rounded_input_field.dart';
+import 'package:binary_flutter/screens/register/choice/register_choice.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/sizes/sizeConfig.dart';
@@ -71,48 +73,35 @@ class Body extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: MaterialButton(
-                          elevation: 0,
-                          color: Color(0xFFFD7C7C),
-                          textColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(90),
-                          ),
-                          onPressed: () {},
-                          child: Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              "로그인",
+                      RoundedButton(
+                        text: "로그인",
+                        press: () {},
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => RegisterChoice())),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "회원가입",
                               style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                decoration: TextDecoration.underline,
                                 color: Colors.white,
                               ),
                             ),
-                          ),
+                            Text(
+                              "이 필요하신가요?",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "회원가입",
-                            style: TextStyle(
-                              fontSize: 12,
-                              decoration: TextDecoration.underline,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            "이 필요하신가요?",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   )

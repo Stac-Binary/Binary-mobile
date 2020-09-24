@@ -1,0 +1,227 @@
+import 'package:binary_flutter/components/rounded_button.dart';
+import 'package:binary_flutter/screens/register/choice/body.dart';
+import 'package:binary_flutter/screens/register/complete/register_complete.dart';
+import 'package:flutter/material.dart';
+
+import '../../../services/sizes/sizeConfig.dart';
+
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  List<FocusNode> nodes;
+  @override
+  void initState() {
+    nodes = [
+      FocusNode(),
+      FocusNode(),
+      FocusNode(),
+    ];
+    nodes.forEach((element) {
+      element.addListener(() {
+        setState(() {});
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    return SafeArea(
+      child: Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(40)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TitleIcon(),
+            Column(
+              children: [
+                UnderlineTextField(
+                  nameNode: nodes[0],
+                  text: "아이디를 입력",
+                ),
+                UnderlineTextField(
+                  nameNode: nodes[1],
+                  text: "비밀번호 입력",
+                ),
+                UnderlineTextField(
+                  nameNode: nodes[2],
+                  text: "비밀번호 확인",
+                ),
+              ],
+            ),
+            RoundedButton(
+              text: "확인",
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (ctx) => RegisterComplete()));
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UnderlineTextField extends StatelessWidget {
+  const UnderlineTextField({
+    Key key,
+    @required this.nameNode,
+    @required this.text,
+  }) : super(key: key);
+  final String text;
+  final FocusNode nameNode;
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      textAlignVertical: TextAlignVertical.bottom,
+      focusNode: nameNode,
+      style: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+      ),
+      decoration: InputDecoration(
+        hintText: text,
+        hintStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0xFFFF8181),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UnderlineTextFieldDropBox extends StatelessWidget {
+  const UnderlineTextFieldDropBox({
+    Key key,
+    @required this.nameNode,
+    @required this.text,
+    @required this.items,
+  }) : super(key: key);
+  final String text;
+  final FocusNode nameNode;
+  final List<String> items;
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      textAlignVertical: TextAlignVertical.bottom,
+      focusNode: nameNode,
+      style: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+      ),
+      decoration: InputDecoration(
+        hintText: text,
+        hintStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0xFFFF8181),
+          ),
+        ),
+        suffixIconConstraints:
+            BoxConstraints(maxHeight: getProportionateScreenHeight(38)),
+        suffixIcon: Container(
+          decoration: BoxDecoration(
+            color: Color(0xFFCCCCCC),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(10)),
+            child: DropdownButton(
+              iconEnabledColor: Colors.white,
+              iconDisabledColor: Colors.white,
+              dropdownColor: Color(0xFFCCCCCC),
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              items: items
+                  .map(
+                    (e) => DropdownMenuItem(
+                      child: Text(e),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (newVal) {},
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UnderlineTextFieldWithButton extends StatelessWidget {
+  const UnderlineTextFieldWithButton({
+    Key key,
+    @required this.nameNode,
+    @required this.text,
+    @required this.press,
+    @required this.subText,
+  }) : super(key: key);
+  final String text;
+  final Function press;
+  final FocusNode nameNode;
+  final String subText;
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      textAlignVertical: TextAlignVertical.center,
+      focusNode: nameNode,
+      style: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+      ),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(0),
+        hintText: text,
+        hintStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0xFFFF8181),
+          ),
+        ),
+        suffixIconConstraints:
+            BoxConstraints(maxHeight: getProportionateScreenHeight(32)),
+        suffixIcon: MaterialButton(
+          elevation: 0,
+          color: Color(0xFFCCCCCC),
+          textColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          onPressed: press,
+          child: Text(
+            subText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
