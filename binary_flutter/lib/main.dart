@@ -1,6 +1,5 @@
 import 'package:binary_flutter/constants/constants.dart';
-import 'package:binary_flutter/screens/home/home_page.dart';
-import 'package:binary_flutter/screens/login/login_screen.dart';
+import 'package:binary_flutter/screens/route_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
         )
       ),
       title: 'ASDF',
-      home: HomePage(),
+      home: RoutePage(),
     );
   }
 }
