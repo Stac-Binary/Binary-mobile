@@ -1,8 +1,7 @@
 import 'package:binary_flutter/constants/constants.dart';
-
 import 'package:binary_flutter/provider/login_provider.dart';
-import 'package:binary_flutter/screens/home/home_page.dart';
 import 'package:binary_flutter/screens/login/login_screen.dart';
+import 'package:binary_flutter/screens/route_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'ASDF',
         home: Consumer<LoginProvider>(builder: (ctx, item, _) {
           print(item.status);
-          if (item.status == Status.auth) return HomePage();
+          if (item.status == Status.auth) return RoutePage();
           return LoginScreen();
         }),
       ),

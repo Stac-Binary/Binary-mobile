@@ -40,7 +40,8 @@ class _RoutePageState extends State<RoutePage> {
   void _onTap(int index) {
     setState(() {
       _currentTabIndex = index;
-      pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+      pageController.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
     });
     //pageController.jumpToPage(index);
   }
@@ -57,6 +58,51 @@ class _RoutePageState extends State<RoutePage> {
         ),
         title: Text("풍원이",
             style: kNanumLight.copyWith(fontSize: 20, color: kLightBlack)),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/colde.jpg"),
+                backgroundColor: kWhite,
+              ),
+              accountName: Text("박상아", style: kNanumExtraBold.copyWith(fontSize: 20),),
+              accountEmail: Text("minseocho0309@gmail.com", style: kNanumBold.copyWith(fontSize: 16),),
+              onDetailsPressed: () {
+                print("clicked");
+              },
+              decoration: BoxDecoration(
+                color: kPink,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30.0),
+                  bottomRight: Radius.circular(30.0),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home, color: kPink,),
+              title: Text('프로필 수정'),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.home, color: kPink,),
+              title: Text('헌혈 내역'),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.home, color: kPink,),
+              title: Text('헌혈 혜택'),
+              onTap: (){},
+            ),
+            ListTile(
+              leading: Icon(Icons.home, color: kPink,),
+              title: Text('앱정보'),
+              onTap: (){},
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentTabIndex,
