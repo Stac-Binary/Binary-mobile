@@ -20,11 +20,11 @@ class MainData {
 
   factory MainData.fromJson(Map<String, dynamic> json) {
     print(json);
-    (json["list"] as List).forEach((element) {print("MEAL : ${element["service"]}"); });
+    (json["list"] as List).forEach((element) {
+      print("MEAL : ${element["service"]}");
+    });
     return MainData(
-      mld: (json["list"] as List)
-          .map((e) => MainListData.fromJson(e))
-          .toList(),
+      mld: (json["list"] as List).map((e) => MainListData.fromJson(e)).toList(),
       mbd: (json["blist"] as List)
           .map((e) => MainBloodData.fromJson(e))
           .toList(),
@@ -55,6 +55,7 @@ class MainBloodData {
   final int idx;
   final String userId;
   final int bhospitalIdx;
+  final String service;
   final String bloodType;
   final String time;
   final String day;
@@ -62,6 +63,7 @@ class MainBloodData {
   MainBloodData(
       {this.idx,
       this.userId,
+      this.service,
       this.bhospitalIdx,
       this.bloodType,
       this.time,
@@ -71,6 +73,7 @@ class MainBloodData {
         idx: json["idx"],
         userId: json["userId"],
         bhospitalIdx: json["bhospitalIdx"],
+        service: "헌혈",
         bloodType: json["bloodType"],
         time: json["time"],
         day: json["date"],
