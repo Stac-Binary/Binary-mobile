@@ -13,6 +13,7 @@ class RoutePage extends StatefulWidget {
 }
 
 class _RoutePageState extends State<RoutePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final pageController = PageController(initialPage: 2);
 
   int _currentTabIndex = 2;
@@ -50,11 +51,13 @@ class _RoutePageState extends State<RoutePage> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
-        leading: Icon(
-          Icons.menu,
+        leading: IconButton(
+          icon: Icon(Icons.menu),
           color: kLightBlack,
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
         ),
         title: Text("풍원이",
             style: kNanumLight.copyWith(fontSize: 20, color: kLightBlack)),

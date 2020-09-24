@@ -42,11 +42,11 @@ class _HomePageState extends State<HomePage>
             ),
             Positioned(
               child: Container(
-                width: getProportionateScreenWidth(320),
+                width: getProportionateScreenWidth(SizeConfig.screenWidth),
                 child: Image.asset('assets/images/mainimage.png'),
               ),
-              left: getProportionateScreenWidth(30),
-              top: getProportionateScreenHeight(150),
+              top: getProportionateScreenHeight(120),
+              left: -20,
             ),
           ],
         ),
@@ -73,32 +73,31 @@ class _HomePageState extends State<HomePage>
                               horizontal: getProportionateScreenWidth(10)),
                           child: Icon(
                             Icons.looks_one,
-                            color: kRed,
+                            color: kPink,
+                            size: 32,
                           ),
                         ),
                         Container(
-                            height: getProportionateScreenHeight(40),
+                            height: getProportionateScreenHeight(60),
                             width: getProportionateScreenWidth(1),
-                            color: kRed ),
+                            color: kPink ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: getProportionateScreenHeight(5),
-                                  horizontal: getProportionateScreenWidth(10)),
+                              margin: EdgeInsets.only(
+                                  left: getProportionateScreenHeight(10),
+                                  top: getProportionateScreenWidth(8)),
                               child: Text(
                                 "2020.07.06 병원예약",
-                                style: kNanumBold,
+                                style: kNanumBold.copyWith(fontSize: 20),
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: getProportionateScreenHeight(5),
-                                  horizontal: getProportionateScreenWidth(10)),
+                              margin: EdgeInsets.only(left: 10, bottom: 8),
                               child: Text(
                                 "병원 예약",
-                                style: kNanumBold,
+                                style: kNanumBold.copyWith(fontSize: 16),
                               ),
                             )
                           ],
