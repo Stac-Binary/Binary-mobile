@@ -1,0 +1,25 @@
+class DogModel {
+  final String message;
+  final DogData data;
+  DogModel({this.message, this.data});
+  factory DogModel.fromJson(Map<String, dynamic> json) => DogModel(
+        message: json["message"],
+        data: DogData.fromJson(json["data"]),
+      );
+}
+
+class DogData {
+  final String id;
+  final String dogName;
+  final String breed;
+  final String weight;
+  final double bloodType;
+  DogData({this.id, this.dogName, this.breed, this.weight, this.bloodType});
+  factory DogData.fromJson(Map<String, dynamic> json) => DogData(
+        id: json["id"],
+        dogName: json["dogName"],
+        breed: json["breed"],
+        weight: json["weight"],
+        bloodType: json["bloodType"],
+      );
+}

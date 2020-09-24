@@ -15,8 +15,15 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   String value = "1.1";
   TextEditingController DEAController;
+  TextEditingController nameController;
+  TextEditingController breedController;
+  TextEditingController weightController;
+
   @override
   void initState() {
+    nameController = TextEditingController();
+    breedController = TextEditingController();
+    weightController = TextEditingController();
     DEAController = TextEditingController()..text = "DEA 1.1";
     super.initState();
   }
@@ -73,7 +80,7 @@ class _BodyState extends State<Body> {
                   SizedBox(
                     width: getProportionateScreenWidth(200),
                     child: UnderlineTextField(
-                      controller: TextEditingController(),
+                      controller: nameController,
                       text: "이름",
                       nameNode: FocusNode(),
                     ),
@@ -81,12 +88,12 @@ class _BodyState extends State<Body> {
                 ],
               ),
               UnderlineTextField(
-                controller: TextEditingController(),
+                controller: breedController,
                 text: "견종",
                 nameNode: FocusNode(),
               ),
               UnderlineTextField(
-                controller: TextEditingController(),
+                controller: weightController,
                 text: "몸무게",
                 nameNode: FocusNode(),
               ),
@@ -108,8 +115,16 @@ class _BodyState extends State<Body> {
           RoundedButton(
             text: "다음",
             press: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (ctx) => DogRegisterThird()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) => DogRegisterThird(
+                      name: nameController.text,
+                      breed: breedController.text,
+                      weight: weightController.text,
+                      dea: value),
+                ),
+              );
             },
           )
         ],

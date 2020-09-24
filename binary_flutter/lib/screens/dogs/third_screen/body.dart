@@ -1,10 +1,19 @@
 import 'package:binary_flutter/components/rounded_button.dart';
+import 'package:binary_flutter/provider/login_provider.dart';
 import 'package:binary_flutter/screens/register/choice/body.dart';
+import 'package:binary_flutter/services/network/fetch_dogs.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../main.dart';
 import '../../../services/sizes/sizeConfig.dart';
 
 class Body extends StatelessWidget {
+  final String name;
+  final String breed;
+  final String weight;
+  final String dea;
+  Body({this.name, this.breed, this.weight, this.dea});
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -12,20 +21,50 @@ class Body extends StatelessWidget {
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(40)),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TitleIcon(),
-          Text("설정을 통해 강아지를 더 추가해보세요"),
-          ImageFlexCard(
-            image: Image.asset(
-              "assets/images/puppy_preview.png",
-              fit: BoxFit.fill,
-            ),
-            title: "풍월이",
-            selected: false,
+          Column(
+            children: [
+              Padding(
+                padding:
+                    EdgeInsets.only(bottom: getProportionateScreenHeight(60)),
+                child: Text(
+                  "설정을 통해 강아지를 더 추가해보세요",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF707070),
+                  ),
+                ),
+              ),
+              ImageFlexCard(
+                image: AssetImage(
+                  "assets/images/colde.jpg",
+                ),
+                title: "풍월이",
+                selected: false,
+              ),
+            ],
           ),
           RoundedButton(
             text: "다음",
-            press: () {},
+            press: () async {
+              final response = await fetchDogs(
+                  Provider.of<LoginProvider>(context, listen: false)
+                      .model
+                      .data
+                      .id,
+                  name,
+                  breed,
+                  weight,
+                  double.parse(dea));
+              if (response.data != null)
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (ctx) => MyApp()),
+                    (route) => false);
+            },
           )
         ],
       ),
@@ -41,15 +80,15 @@ class ImageFlexCard extends StatelessWidget {
     this.color,
     this.selected,
   }) : super(key: key);
-  final Widget image;
+  final ImageProvider image;
   final String title;
   final Color color;
   final bool selected;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: getProportionateScreenWidth(135),
-      height: getProportionateScreenHeight(200),
+      width: getProportionateScreenWidth(140),
+      height: getProportionateScreenHeight(230),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -71,7 +110,20 @@ class ImageFlexCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(flex: 2, child: image),
+          Expanded(
+            flex: 2,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)),
+                image: DecorationImage(
+                  image: image,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
           Expanded(
             flex: 1,
             child: Center(
