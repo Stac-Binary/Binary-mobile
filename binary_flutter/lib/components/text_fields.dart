@@ -94,7 +94,8 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
               iconDisabledColor: Colors.white,
               dropdownColor: Color(0xFFCCCCCC),
               value: value,
-              style: kNanumBold.copyWith(color: Colors.white),
+              style:
+                  kNanumBold.copyWith(color: Colors.white),
               items: items
                   .map(
                     (e) => DropdownMenuItem(
@@ -227,7 +228,8 @@ class _UnderlinePasswordInputState extends State<UnderlinePasswordInput> {
         ),
         hintStyle: kNanumBold.copyWith(
           fontSize: 14,
-          color: widget.nameNode.hasFocus ? kLightBlack : Color(0xFFCCCCCC),
+          color:
+              widget.nameNode.hasFocus ? kLightBlack : Color(0xFFCCCCCC),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
