@@ -7,12 +7,17 @@ import 'package:flutter/material.dart';
 import '../../../services/sizes/sizeConfig.dart';
 
 class Body extends StatefulWidget {
+  final int selected;
+  Body(this.selected);
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   List<FocusNode> nodes;
+  List<TextEditingController> controllers;
+  String selected = "남";
+  bool enabled = false;
   @override
   void initState() {
     nodes = [
@@ -20,9 +25,19 @@ class _BodyState extends State<Body> {
       FocusNode(),
       FocusNode(),
       FocusNode(),
-      FocusNode(),
+    ];
+    controllers = [
+      TextEditingController(),
+      TextEditingController(),
+      TextEditingController(),
+      TextEditingController(),
     ];
     nodes.forEach((element) {
+      element.addListener(() {
+        setState(() {});
+      });
+    });
+    controllers.forEach((element) {
       element.addListener(() {
         setState(() {});
       });
@@ -33,6 +48,12 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    enabled = (controllers
+            .map((e) => e.text.isNotEmpty)
+            .where((element) => element == true)
+            .toList()
+            .length ==
+        4);
     return SafeArea(
       child: Padding(
         padding:
@@ -45,25 +66,29 @@ class _BodyState extends State<Body> {
               children: [
                 UnderlineTextField(
                   nameNode: nodes[0],
+                  controller: controllers[0],
                   text: "이름 (실명 입력)",
                 ),
-                UnderlineTextFieldWithButton(
-                  nameNode: nodes[1],
-                  text: "전화번호('-'제외)",
-                  press: () {},
-                  subText: "인증번호 전송",
-                ),
                 UnderlineTextField(
-                  nameNode: nodes[2],
-                  text: "인증번호 입력",
+                  nameNode: nodes[1],
+                  controller: controllers[1],
+                  text: "전화번호('-'제외)",
                 ),
                 UnderlineTextFieldDropBox(
-                  nameNode: nodes[3],
+                  controller: controllers[2],
+                  nameNode: nodes[2],
                   text: "생년월일(8자리 입력)",
                   items: ["남", "여"],
+                  value: selected,
+                  changed: (idx) {
+                    setState(() {
+                      selected = idx;
+                    });
+                  },
                 ),
                 UnderlineTextFieldWithButton(
-                  nameNode: nodes[4],
+                  controller: controllers[3],
+                  nameNode: nodes[3],
                   text: "주소",
                   press: () {},
                   subText: "주소 검색",
@@ -72,10 +97,19 @@ class _BodyState extends State<Body> {
             ),
             RoundedButton(
               text: "다음",
-              press: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => SecondInputScreen()));
-              },
+              press: !enabled
+                  ? null
+                  : () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => SecondInputScreen(
+                            type: widget.selected,
+                            strs: controllers.map((e) => e.text).toList(),
+                          ),
+                        ),
+                      );
+                    },
             )
           ],
         ),
