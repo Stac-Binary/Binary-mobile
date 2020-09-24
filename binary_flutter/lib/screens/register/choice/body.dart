@@ -5,7 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../services/sizes/sizeConfig.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  int selected = 0;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -37,23 +43,45 @@ class Body extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ImageCard(
-                        color: Color(0xFFFF8181),
-                        image: SvgPicture.asset(
-                          "assets/images/human_with_dog.svg",
-                          color: Color(0xFFFF8181),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selected = 0;
+                          });
+                        },
+                        child: ImageCard(
+                          color: selected == 0
+                              ? Color(0xFFFF8181)
+                              : Color(0xFF707070),
+                          image: SvgPicture.asset(
+                            "assets/images/human_with_dog.svg",
+                            color: selected == 0
+                                ? Color(0xFFFF8181)
+                                : Color(0xFF707070),
+                          ),
+                          title: "반려인",
+                          selected: selected == 0,
                         ),
-                        title: "반려인",
-                        selected: true,
                       ),
-                      ImageCard(
-                        color: Color(0xFF707070),
-                        image: SvgPicture.asset(
-                          "assets/images/doctor_with_dog.svg",
-                          color: Color(0xFF707070),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selected = 1;
+                          });
+                        },
+                        child: ImageCard(
+                          color: selected == 1
+                              ? Color(0xFFFF8181)
+                              : Color(0xFF707070),
+                          image: SvgPicture.asset(
+                            "assets/images/doctor_with_dog.svg",
+                            color: selected == 1
+                                ? Color(0xFFFF8181)
+                                : Color(0xFF707070),
+                          ),
+                          title: "병원",
+                          selected: selected == 1,
                         ),
-                        title: "반려인",
-                        selected: false,
                       ),
                     ],
                   )
@@ -62,8 +90,10 @@ class Body extends StatelessWidget {
               RoundedButton(
                 text: "다음",
                 press: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (ctx) => FirstInputScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (ctx) => FirstInputScreen(selected)));
                 },
               )
             ],
