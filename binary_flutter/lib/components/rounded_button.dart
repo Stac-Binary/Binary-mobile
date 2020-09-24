@@ -22,6 +22,7 @@ class RoundedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(90),
         ),
         onPressed: press,
+        disabledColor: color ?? Color(0x55FD7C7C),
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Text(

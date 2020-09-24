@@ -7,14 +7,17 @@ class UnderlineTextField extends StatelessWidget {
     Key key,
     @required this.nameNode,
     @required this.text,
+    @required this.controller,
   }) : super(key: key);
   final String text;
   final FocusNode nameNode;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return TextField(
       textAlignVertical: TextAlignVertical.bottom,
       focusNode: nameNode,
+      controller: controller,
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,
@@ -43,14 +46,21 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
     @required this.nameNode,
     @required this.text,
     @required this.items,
+    this.controller,
+    this.value,
+    this.changed,
   }) : super(key: key);
   final String text;
   final FocusNode nameNode;
   final List<String> items;
+  final TextEditingController controller;
+  final String value;
+  final Function changed;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return TextField(
+      controller: controller,
       textAlignVertical: TextAlignVertical.bottom,
       focusNode: nameNode,
       style: TextStyle(
@@ -84,12 +94,17 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
               iconEnabledColor: Colors.white,
               iconDisabledColor: Colors.white,
               dropdownColor: Color(0xFFCCCCCC),
+              value: value,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               items: items
                   .map(
                     (e) => DropdownMenuItem(
                       child: Text(e),
+                      value: e,
+                      onTap: () {
+                        changed(e);
+                      },
                     ),
                   )
                   .toList(),
@@ -103,23 +118,26 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
 }
 
 class UnderlineTextFieldWithButton extends StatelessWidget {
-  const UnderlineTextFieldWithButton({
-    Key key,
-    @required this.nameNode,
-    @required this.text,
-    @required this.press,
-    @required this.subText,
-  }) : super(key: key);
+  const UnderlineTextFieldWithButton(
+      {Key key,
+      @required this.nameNode,
+      @required this.text,
+      @required this.press,
+      @required this.subText,
+      this.controller})
+      : super(key: key);
   final String text;
   final Function press;
   final FocusNode nameNode;
   final String subText;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return TextField(
       textAlignVertical: TextAlignVertical.center,
       focusNode: nameNode,
+      controller: controller,
       style: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,

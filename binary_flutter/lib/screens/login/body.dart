@@ -1,13 +1,17 @@
 import 'package:binary_flutter/components/rounded_button.dart';
 import 'package:binary_flutter/components/rounded_input_field.dart';
+import 'package:binary_flutter/provider/login_provider.dart';
 import 'package:binary_flutter/screens/register/choice/register_choice.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../services/sizes/sizeConfig.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final idController = TextEditingController();
+    final pwController = TextEditingController();
     SizeConfig().init(context);
     return Scaffold(
       body: Stack(
@@ -49,14 +53,14 @@ class Body extends StatelessWidget {
                     children: [
                       RoundedTextField(
                         hintText: "아이디를 입력하세요.",
-                        controller: TextEditingController(),
+                        controller: idController,
                       ),
                       SizedBox(
                         height: getProportionateScreenHeight(20),
                       ),
                       RoundedTextField(
                         hintText: "비밀번호를 입력하세요.",
-                        controller: TextEditingController(),
+                        controller: pwController,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -75,7 +79,12 @@ class Body extends StatelessWidget {
                     children: [
                       RoundedButton(
                         text: "로그인",
-                        press: () {},
+                        press: () async {
+                          final id = idController.text;
+                          final pw = pwController.text;
+                          Provider.of<LoginProvider>(context, listen: false)
+                              .signIn(id, pw);
+                        },
                       ),
                       GestureDetector(
                         onTap: () => Navigator.push(
