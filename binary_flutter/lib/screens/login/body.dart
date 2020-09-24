@@ -58,7 +58,7 @@ class Body extends StatelessWidget {
                       SizedBox(
                         height: getProportionateScreenHeight(20),
                       ),
-                      RoundedTextField(
+                      RoundedPasswordField(
                         hintText: "비밀번호를 입력하세요.",
                         controller: pwController,
                       ),

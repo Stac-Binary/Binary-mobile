@@ -18,6 +18,7 @@ Future<DogModel> fetchDogs(String id, String dogname, String breed,
           "bloodType": bloodType
         }),
         headers: {"Content-Type": "application/json"});
+    print("$id $dogname $breed $weight $bloodType");
     print(response.body);
     if (response.statusCode == 200) {
       return DogModel.fromJson(json.decode(response.body));

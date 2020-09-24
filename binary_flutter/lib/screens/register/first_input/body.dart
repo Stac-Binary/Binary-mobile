@@ -72,7 +72,7 @@ class _BodyState extends State<Body> {
                 UnderlineTextField(
                   nameNode: nodes[1],
                   controller: controllers[1],
-                  text: "전화번호('-'제외)",
+                  text: "이메일",
                 ),
                 UnderlineTextFieldDropBox(
                   controller: controllers[2],

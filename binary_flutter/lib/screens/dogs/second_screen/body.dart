@@ -8,6 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../services/sizes/sizeConfig.dart';
 
 class Body extends StatefulWidget {
+  final String id;
+  Body(this.id);
   @override
   _BodyState createState() => _BodyState();
 }
@@ -119,6 +121,7 @@ class _BodyState extends State<Body> {
                 context,
                 MaterialPageRoute(
                   builder: (ctx) => DogRegisterThird(
+                      id: widget.id,
                       name: nameController.text,
                       breed: breedController.text,
                       weight: weightController.text,

@@ -65,11 +65,11 @@ class _BodyState extends State<Body> {
                     nameNode: nodes[0],
                     text: "아이디를 입력",
                     controller: controllers[0]),
-                UnderlineTextField(
+                UnderlinePasswordInput(
                     nameNode: nodes[1],
                     text: "비밀번호 입력",
                     controller: controllers[1]),
-                UnderlineTextField(
+                UnderlinePasswordInput(
                     nameNode: nodes[2],
                     text: "비밀번호 확인",
                     controller: controllers[2]),
@@ -82,8 +82,13 @@ class _BodyState extends State<Body> {
                   : () async {
                       print("ASDF");
                       enabled = false;
-                      final response = await fetchRegister(controllers[0].text,
-                          controllers[1].text, widget.strs[0], widget.strs[3]);
+                      final response = await fetchRegister(
+                        controllers[0].text,
+                        controllers[1].text,
+                        widget.strs[0],
+                        widget.strs[3],
+                        widget.strs[1],
+                      );
                       print("ASDF");
                       print(response);
                       if (response == 200)
@@ -91,6 +96,7 @@ class _BodyState extends State<Body> {
                           context,
                           MaterialPageRoute(
                             builder: (ctx) => RegisterComplete(
+                                controllers[0].text,
                                 widget.type,
                                 widget.strs,
                                 controllers.map((e) => e.text).toList()),
