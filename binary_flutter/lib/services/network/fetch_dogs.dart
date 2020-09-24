@@ -5,6 +5,20 @@ import 'package:http/http.dart' as http;
 
 final client = http.Client();
 final baseUrl = "http://10.80.161.119:8000/api";
+Future<List<DogData>> getDogs(String id) async {
+  try {
+    final response = await client.get('$baseUrl/dog?userId=$id');
+    if (response.statusCode == 200) {
+      final decoded = json.decode(response.body);
+      return (decoded["data"]["doglist"] as List)
+          .map((e) => DogData.fromJson(e))
+          .toList();
+    } else
+      List.empty();
+  } on Exception {
+    throw Exception("Server connection failed");
+  }
+}
 
 Future<DogModel> fetchDogs(String id, String dogname, String breed,
     String weight, double bloodType) async {

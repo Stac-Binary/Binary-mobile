@@ -94,8 +94,7 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
               iconDisabledColor: Colors.white,
               dropdownColor: Color(0xFFCCCCCC),
               value: value,
-              style:
-                  kNanumBold.copyWith(color: Colors.white),
+              style: kNanumBold.copyWith(color: Colors.white),
               items: items
                   .map(
                     (e) => DropdownMenuItem(
@@ -228,78 +227,7 @@ class _UnderlinePasswordInputState extends State<UnderlinePasswordInput> {
         ),
         hintStyle: kNanumBold.copyWith(
           fontSize: 14,
-          color:
-              widget.nameNode.hasFocus ? kLightBlack : Color(0xFFCCCCCC),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Color(0xFFFF8181),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class UnderlinePasswordInput extends StatefulWidget {
-  const UnderlinePasswordInput({
-    Key key,
-    @required this.nameNode,
-    @required this.text,
-    @required this.controller,
-  }) : super(key: key);
-  final String text;
-  final FocusNode nameNode;
-  final TextEditingController controller;
-  @override
-  _UnderlinePasswordInputState createState() => _UnderlinePasswordInputState();
-}
-
-class _UnderlinePasswordInputState extends State<UnderlinePasswordInput> {
-  bool _isShow = false;
-  set isShow(val) {
-    setState(() {
-      _isShow = val;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return TextField(
-      textAlignVertical: TextAlignVertical.bottom,
-      focusNode: widget.nameNode,
-      controller: widget.controller,
-      style: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.bold,
-        color: widget.nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
-      ),
-      obscureText: !_isShow,
-      obscuringCharacter: "●",
-      decoration: InputDecoration(
-        hintText: widget.text,
-        suffixIconConstraints: BoxConstraints(
-          maxWidth: getProportionateScreenWidth(30),
-        ),
-        suffixIcon: GestureDetector(
-          onTap: () {
-            isShow = !_isShow;
-          },
-          child: Padding(
-            padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
-            child: _isShow
-                ? SvgPicture.asset(
-                    "assets/images/eyes_on.svg",
-                  )
-                : SvgPicture.asset("assets/images/eyes_off.svg"),
-          ),
-        ),
-        hintStyle: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-          color:
-              widget.nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+          color: widget.nameNode.hasFocus ? kLightBlack : Color(0xFFCCCCCC),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(

@@ -1,4 +1,5 @@
 import 'package:binary_flutter/constants/constants.dart';
+import 'package:binary_flutter/provider/dog_provider.dart';
 import 'package:binary_flutter/screens/blooddonation/blood_donation_page.dart';
 import 'package:binary_flutter/screens/bloodrequest/bloodrequest_page.dart';
 import 'package:binary_flutter/screens/bloodtrace/bloodtrace_page.dart';
@@ -8,6 +9,9 @@ import 'package:binary_flutter/screens/profileedit/profileedit_page.dart';
 import 'package:binary_flutter/screens/reservation/reservation_page.dart';
 import 'package:binary_flutter/services/sizes/sizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../services/sizes/sizeConfig.dart';
 
 class RoutePage extends StatefulWidget {
   @override
@@ -57,6 +61,7 @@ class _RoutePageState extends State<RoutePage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<DogProvider>(context, listen: false);
     SizeConfig().init(context);
     return Scaffold(
       key: _scaffoldKey,
@@ -67,26 +72,10 @@ class _RoutePageState extends State<RoutePage> {
           color: kLightBlack,
           onPressed: () => _scaffoldKey.currentState.openDrawer(),
         ),
-        title: DropdownButtonHideUnderline(
-          child: DropdownButton(
-            value: titles[0],
-            isExpanded: true,
-            items: List.generate(
-              titles.length,
-              (index) => DropdownMenuItem(
-                value: titles[index],
-                child: Container(
-                  child: Row(
-                    children: [
-                      Text("리트리버"),
-                      Text("풍원이"),
-                      Text("DEA 2"),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            onChanged: (c) {},
+        title: Text(
+          provider.dogs[provider.selected].dogName,
+          style: TextStyle(
+            color: Color(0xFF707070),
           ),
         ),
       ),
@@ -137,7 +126,10 @@ class _RoutePageState extends State<RoutePage> {
               ),
               title: Text('헌혈 내역'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder : (context) => BloodDonationPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BloodDonationPage()));
               },
             ),
             Divider(),
@@ -147,9 +139,7 @@ class _RoutePageState extends State<RoutePage> {
                 color: kPink,
               ),
               title: Text('헌혈 혜택'),
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
             Divider(),
             ListTile(
@@ -158,9 +148,7 @@ class _RoutePageState extends State<RoutePage> {
                 color: kPink,
               ),
               title: Text('앱정보'),
-              onTap: () {
-
-              },
+              onTap: () {},
             ),
             Divider(),
           ],

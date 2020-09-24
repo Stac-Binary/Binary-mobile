@@ -13,13 +13,13 @@ class DogData {
   final String dogName;
   final String breed;
   final String weight;
-  final double bloodType;
+  final String bloodType;
   DogData({this.id, this.dogName, this.breed, this.weight, this.bloodType});
   factory DogData.fromJson(Map<String, dynamic> json) => DogData(
         id: json["id"],
         dogName: json["dogName"],
         breed: json["breed"],
-        weight: json["weight"],
+        weight: json["weight"].toString(),
         bloodType: json["bloodType"],
       );
 }

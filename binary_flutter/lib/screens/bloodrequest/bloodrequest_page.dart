@@ -1,5 +1,6 @@
 import 'package:binary_flutter/components/rounded_button.dart';
 import 'package:binary_flutter/models/hospital_model.dart';
+import 'package:binary_flutter/provider/dog_provider.dart';
 import 'package:binary_flutter/provider/login_provider.dart';
 import 'package:binary_flutter/screens/bloodrequest/complete/register_complete.dart';
 import 'package:binary_flutter/services/network/fetch_hospital.dart';
@@ -64,181 +65,183 @@ class _RequestBloodLasterState extends State<RequestBloodLaster> {
   bool selected = false;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: getProportionateScreenHeight(20)),
-            child: Text(
-              "헌혈 신청",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF707070)),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x10000000),
-                    offset: Offset(0, 0),
-                    blurRadius: 6,
-                    spreadRadius: 1,
-                  ),
-                ],
+    return Consumer<DogProvider>(
+      builder: (ctx, item, _) => Padding(
+        padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(20)),
+              child: Text(
+                "헌혈 신청",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF707070)),
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: getProportionateScreenWidth(20),
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x10000000),
+                      offset: Offset(0, 0),
+                      blurRadius: 6,
+                      spreadRadius: 1,
+                    ),
+                  ],
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      BloodGlobal.model.hospitalName,
-                      style: TextStyle(
-                        color: Color(0xFF707070),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        BloodGlobal.model.hospitalName,
+                        style: TextStyle(
+                          color: Color(0xFF707070),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          BloodGlobal.model.address,
-                          style: TextStyle(
-                            color: Color(0x77707070),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                        Text(
-                          "053-0000-0000",
-                          style: TextStyle(
-                            color: Color(0x77707070),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          "assets/images/blood_icon.svg",
-                          width: getProportionateScreenWidth(40),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: getProportionateScreenWidth(20)),
-                          child: Text(
-                            "DEA 1.2",
-                            style: TextStyle(
-                              color: Color(0xFFDE5B5B),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundImage:
-                              AssetImage("assets/images/colde.jpg"),
-                          radius: getProportionateScreenWidth(25),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: getProportionateScreenWidth(20)),
-                          child: Text(
-                            "풍원이",
-                            style: TextStyle(
-                              color: Color(0xFF707070),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selected = !selected;
-                        });
-                      },
-                      child: Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
+                          Text(
+                            BloodGlobal.model.address,
+                            style: TextStyle(
+                              color: Color(0x77707070),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
                             ),
-                            child: Checkbox(
-                              value: selected,
-                              onChanged: (val) {
-                                setState(() {
-                                  selected = val;
-                                });
-                              },
-                              checkColor: Colors.black,
-                              tristate: false,
-                              activeColor: Colors.white,
+                          ),
+                          Text(
+                            "053-0000-0000",
+                            style: TextStyle(
+                              color: Color(0x77707070),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
                             ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            "assets/images/blood_icon.svg",
+                            width: getProportionateScreenWidth(40),
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: getProportionateScreenWidth(12)),
-                            child: Text("헌혈에 동의합니다."),
-                          )
+                                horizontal: getProportionateScreenWidth(20)),
+                            child: Text(
+                              "DEA ${item.dogs[item.selected].bloodType}",
+                              style: TextStyle(
+                                color: Color(0xFFDE5B5B),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                    RoundedButton(
-                      press: selected
-                          ? () async {
-                              final response = await fetchDogs(
-                                  Provider.of<LoginProvider>(context,
-                                          listen: false)
-                                      .model
-                                      .data
-                                      .id,
-                                  BloodGlobal.selectedIdx.toString(),
-                                  "1.2",
-                                  BloodGlobal.time,
-                                  BloodGlobal.when);
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundImage:
+                                AssetImage("assets/images/colde.jpg"),
+                            radius: getProportionateScreenWidth(25),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: getProportionateScreenWidth(20)),
+                            child: Text(
+                              "${item.dogs[item.selected].dogName}",
+                              style: TextStyle(
+                                color: Color(0xFF707070),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selected = !selected;
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: Checkbox(
+                                value: selected,
+                                onChanged: (val) {
+                                  setState(() {
+                                    selected = val;
+                                  });
+                                },
+                                checkColor: Colors.black,
+                                tristate: false,
+                                activeColor: Colors.white,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getProportionateScreenWidth(12)),
+                              child: Text("헌혈에 동의합니다."),
+                            )
+                          ],
+                        ),
+                      ),
+                      RoundedButton(
+                        press: selected
+                            ? () async {
+                                final response = await fetchDogs(
+                                    Provider.of<LoginProvider>(context,
+                                            listen: false)
+                                        .model
+                                        .data
+                                        .id,
+                                    BloodGlobal.selectedIdx.toString(),
+                                    item.dogs[item.selected].bloodType,
+                                    BloodGlobal.time,
+                                    BloodGlobal.when);
 
-                              print(response);
-                              if (response == 200)
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (ctx) =>
-                                            FinishBloodRequest()));
-                            }
-                          : null,
-                      text: "신청하기",
-                    )
-                  ],
+                                print(response);
+                                if (response == 200)
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (ctx) =>
+                                              FinishBloodRequest()));
+                              }
+                            : null,
+                        text: "신청하기",
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
