@@ -3,6 +3,7 @@ import 'package:binary_flutter/screens/bloodrequest/bloodrequest_page.dart';
 import 'package:binary_flutter/screens/bloodtrace/bloodtrace_page.dart';
 import 'package:binary_flutter/screens/home/home_page.dart';
 import 'package:binary_flutter/screens/hospitalreservation/hospitalreservation_page.dart';
+import 'package:binary_flutter/screens/profileedit/profileedit_page.dart';
 import 'package:binary_flutter/screens/reservation/reservation_page.dart';
 import 'package:binary_flutter/services/sizes/sizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -84,9 +85,7 @@ class _RoutePageState extends State<RoutePage> {
                 ),
               ),
             ),
-            onChanged: (c) {
-
-            },
+            onChanged: (c) {},
           ),
         ),
       ),
@@ -124,16 +123,22 @@ class _RoutePageState extends State<RoutePage> {
                 color: kPink,
               ),
               title: Text('프로필 수정'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfileEditPage()));
+              },
             ),
+            Divider(),
             ListTile(
               leading: Icon(
                 Icons.home,
                 color: kPink,
               ),
               title: Text('헌혈 내역'),
-              onTap: () {},
+              onTap: () {
+              },
             ),
+            Divider(),
             ListTile(
               leading: Icon(
                 Icons.home,
@@ -142,6 +147,7 @@ class _RoutePageState extends State<RoutePage> {
               title: Text('헌혈 혜택'),
               onTap: () {},
             ),
+            Divider(),
             ListTile(
               leading: Icon(
                 Icons.home,
@@ -149,7 +155,8 @@ class _RoutePageState extends State<RoutePage> {
               ),
               title: Text('앱정보'),
               onTap: () {},
-            )
+            ),
+            Divider(),
           ],
         ),
       ),
