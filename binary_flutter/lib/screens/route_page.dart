@@ -15,6 +15,12 @@ class RoutePage extends StatefulWidget {
 class _RoutePageState extends State<RoutePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final pageController = PageController(initialPage: 2);
+  List titles = [
+    'a',
+    'b',
+    'c',
+    'd',
+  ];
 
   int _currentTabIndex = 2;
 
@@ -59,8 +65,30 @@ class _RoutePageState extends State<RoutePage> {
           color: kLightBlack,
           onPressed: () => _scaffoldKey.currentState.openDrawer(),
         ),
-        title: Text("풍원이",
-            style: kNanumLight.copyWith(fontSize: 20, color: kLightBlack)),
+        title: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            value: titles[0],
+            isExpanded: true,
+            items: List.generate(
+              titles.length,
+              (index) => DropdownMenuItem(
+                value: titles[index],
+                child: Container(
+                  child: Row(
+                    children: [
+                      Text("리트리버"),
+                      Text("풍원이"),
+                      Text("DEA 2"),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            onChanged: (c) {
+
+            },
+          ),
+        ),
       ),
       drawer: Drawer(
         child: ListView(
@@ -71,8 +99,14 @@ class _RoutePageState extends State<RoutePage> {
                 backgroundImage: AssetImage("assets/images/colde.jpg"),
                 backgroundColor: kWhite,
               ),
-              accountName: Text("박상아", style: kNanumExtraBold.copyWith(fontSize: 20),),
-              accountEmail: Text("minseocho0309@gmail.com", style: kNanumBold.copyWith(fontSize: 16),),
+              accountName: Text(
+                "박상아",
+                style: kNanumExtraBold.copyWith(fontSize: 20),
+              ),
+              accountEmail: Text(
+                "minseocho0309@gmail.com",
+                style: kNanumBold.copyWith(fontSize: 16),
+              ),
               onDetailsPressed: () {
                 print("clicked");
               },
@@ -85,24 +119,36 @@ class _RoutePageState extends State<RoutePage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home, color: kPink,),
+              leading: Icon(
+                Icons.home,
+                color: kPink,
+              ),
               title: Text('프로필 수정'),
-              onTap: (){},
+              onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.home, color: kPink,),
+              leading: Icon(
+                Icons.home,
+                color: kPink,
+              ),
               title: Text('헌혈 내역'),
-              onTap: (){},
+              onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.home, color: kPink,),
+              leading: Icon(
+                Icons.home,
+                color: kPink,
+              ),
               title: Text('헌혈 혜택'),
-              onTap: (){},
+              onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.home, color: kPink,),
+              leading: Icon(
+                Icons.home,
+                color: kPink,
+              ),
               title: Text('앱정보'),
-              onTap: (){},
+              onTap: () {},
             )
           ],
         ),
