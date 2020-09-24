@@ -42,9 +42,10 @@ class _HomePageState extends State<HomePage>
             ),
             Positioned(
               child: Container(
+                width: getProportionateScreenWidth(320),
                 child: Image.asset('assets/images/mainimage.png'),
               ),
-              left: getProportionateScreenWidth(32),
+              left: getProportionateScreenWidth(30),
               top: getProportionateScreenHeight(150),
             ),
           ],
@@ -59,7 +60,52 @@ class _HomePageState extends State<HomePage>
               itemCount: 20,
               itemBuilder: (context, int index) {
                 return Card(
-                  child: Text("안녕 $index"),
+                  margin: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(20),
+                      vertical: getProportionateScreenHeight(10)),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              vertical: getProportionateScreenHeight(10),
+                              horizontal: getProportionateScreenWidth(10)),
+                          child: Icon(
+                            Icons.looks_one,
+                            color: kRed,
+                          ),
+                        ),
+                        Container(
+                            height: getProportionateScreenHeight(40),
+                            width: getProportionateScreenWidth(1),
+                            color: kRed ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: getProportionateScreenHeight(5),
+                                  horizontal: getProportionateScreenWidth(10)),
+                              child: Text(
+                                "2020.07.06 병원예약",
+                                style: kNanumBold,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: getProportionateScreenHeight(5),
+                                  horizontal: getProportionateScreenWidth(10)),
+                              child: Text(
+                                "병원 예약",
+                                style: kNanumBold,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 );
               },
             ),
