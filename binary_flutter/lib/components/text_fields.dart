@@ -1,3 +1,4 @@
+import 'package:binary_flutter/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,16 +20,14 @@ class UnderlineTextField extends StatelessWidget {
       textAlignVertical: TextAlignVertical.bottom,
       focusNode: nameNode,
       controller: controller,
-      style: TextStyle(
+      style: kNanumBold.copyWith(
         fontSize: 14,
-        fontWeight: FontWeight.bold,
         color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
       ),
       decoration: InputDecoration(
         hintText: text,
-        hintStyle: TextStyle(
+        hintStyle: kNanumBold.copyWith(
           fontSize: 14,
-          fontWeight: FontWeight.bold,
           color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
         ),
         focusedBorder: UnderlineInputBorder(
@@ -65,16 +64,14 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
       textAlignVertical: TextAlignVertical.bottom,
       focusNode: nameNode,
       readOnly: text == "혈액형",
-      style: TextStyle(
+      style: kNanumBold.copyWith(
         fontSize: 14,
-        fontWeight: FontWeight.bold,
         color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
       ),
       decoration: InputDecoration(
         hintText: text,
-        hintStyle: TextStyle(
+        hintStyle: kNanumBold.copyWith(
           fontSize: 14,
-          fontWeight: FontWeight.bold,
           color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
         ),
         focusedBorder: UnderlineInputBorder(
@@ -98,7 +95,7 @@ class UnderlineTextFieldDropBox extends StatelessWidget {
               dropdownColor: Color(0xFFCCCCCC),
               value: value,
               style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  kNanumBold.copyWith(color: Colors.white),
               items: items
                   .map(
                     (e) => DropdownMenuItem(
@@ -140,17 +137,15 @@ class UnderlineTextFieldWithButton extends StatelessWidget {
       textAlignVertical: TextAlignVertical.center,
       focusNode: nameNode,
       controller: controller,
-      style: TextStyle(
+      style: kNanumBold.copyWith(
         fontSize: 14,
-        fontWeight: FontWeight.bold,
         color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
       ),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(0),
         hintText: text,
-        hintStyle: TextStyle(
+        hintStyle: kNanumBold.copyWith(
           fontSize: 14,
-          fontWeight: FontWeight.bold,
           color: nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
         ),
         focusedBorder: UnderlineInputBorder(
@@ -162,19 +157,83 @@ class UnderlineTextFieldWithButton extends StatelessWidget {
             BoxConstraints(maxHeight: getProportionateScreenHeight(32)),
         suffixIcon: MaterialButton(
           elevation: 0,
-          color: Color(0xFFCCCCCC),
-          textColor: Colors.white,
+          color: kRed,
+          textColor: kLightBlack,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           onPressed: press,
           child: Text(
             subText,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+            style: kNanumBold.copyWith(fontSize: 16, color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UnderlinePasswordInput extends StatefulWidget {
+  const UnderlinePasswordInput({
+    Key key,
+    @required this.nameNode,
+    @required this.text,
+    @required this.controller,
+  }) : super(key: key);
+  final String text;
+  final FocusNode nameNode;
+  final TextEditingController controller;
+  @override
+  _UnderlinePasswordInputState createState() => _UnderlinePasswordInputState();
+}
+
+class _UnderlinePasswordInputState extends State<UnderlinePasswordInput> {
+  bool _isShow = false;
+  set isShow(val) {
+    setState(() {
+      _isShow = val;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    return TextField(
+      textAlignVertical: TextAlignVertical.bottom,
+      focusNode: widget.nameNode,
+      controller: widget.controller,
+      style: kNanumBold.copyWith(
+        fontSize: 14,
+        color: widget.nameNode.hasFocus ? Color(0xFF727272) : Color(0xFFCCCCCC),
+      ),
+      obscureText: !_isShow,
+      obscuringCharacter: "●",
+      decoration: InputDecoration(
+        hintText: widget.text,
+        suffixIconConstraints: BoxConstraints(
+          maxWidth: getProportionateScreenWidth(30),
+        ),
+        suffixIcon: GestureDetector(
+          onTap: () {
+            isShow = !_isShow;
+          },
+          child: Padding(
+            padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
+            child: _isShow
+                ? SvgPicture.asset(
+                    "assets/images/eyes_on.svg",
+                  )
+                : SvgPicture.asset("assets/images/eyes_off.svg"),
+          ),
+        ),
+        hintStyle: kNanumBold.copyWith(
+          fontSize: 14,
+          color:
+              widget.nameNode.hasFocus ? kLightBlack : Color(0xFFCCCCCC),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0xFFFF8181),
           ),
         ),
       ),

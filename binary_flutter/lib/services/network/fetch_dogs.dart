@@ -26,6 +26,7 @@ Future<DogModel> fetchDogs(String id, String dogname, String breed,
       return null;
     }
   } catch (e) {
+    print(e);
     throw Exception("Server connection failed");
   }
 }
