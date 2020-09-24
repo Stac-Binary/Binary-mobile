@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage>
                                                           getProportionateScreenWidth(
                                                               8)),
                                                   child: Text(
-                                                    result[index].day,
+                                                    result[index].day+"에 병원 예약",
                                                     style: kNanumBold.copyWith(
                                                         fontSize: 20),
                                                   ),
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage>
                                                         10),
                                               ),
                                               child: Text(
-                                                result[index].day,
+                                                result[index].day+"에 병원 예약",
                                                 style: kNanumBold.copyWith(
                                                     fontSize: 20),
                                               ),
@@ -173,6 +173,7 @@ class _HomePageState extends State<HomePage>
               ],
             ));
   }
+
 
   Widget getDogData(String dogName, String dogBreed, String dogBloodType) {
     return Container(
