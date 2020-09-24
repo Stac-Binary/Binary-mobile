@@ -1,4 +1,6 @@
 import 'package:binary_flutter/constants/constants.dart';
+import 'package:binary_flutter/screens/app_information.dart';
+import 'package:binary_flutter/screens/bloodbenefit.dart';
 import 'package:binary_flutter/screens/blooddonation/blood_donation_page.dart';
 import 'package:binary_flutter/screens/bloodrequest/bloodrequest_page.dart';
 import 'package:binary_flutter/screens/bloodtrace/bloodtrace_page.dart';
@@ -137,7 +139,10 @@ class _RoutePageState extends State<RoutePage> {
               ),
               title: Text('헌혈 내역'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder : (context) => BloodDonationPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BloodDonationPage()));
               },
             ),
             Divider(),
@@ -148,7 +153,8 @@ class _RoutePageState extends State<RoutePage> {
               ),
               title: Text('헌혈 혜택'),
               onTap: () {
-                
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => BloodBenefit()));
               },
             ),
             Divider(),
@@ -159,7 +165,8 @@ class _RoutePageState extends State<RoutePage> {
               ),
               title: Text('앱정보'),
               onTap: () {
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AppInformation()));
               },
             ),
             Divider(),
