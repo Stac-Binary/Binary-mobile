@@ -13,17 +13,17 @@ class _BloodDonationPageState extends State<BloodDonationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: kLightBlack,
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          "헌혈 내역",
-          style: kNanumLight.copyWith(fontSize: 20, color: kLightBlack),
-        ),
+      centerTitle: true,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        color: kLightBlack,
+        onPressed: () => Navigator.pop(context),
       ),
+      title: Text(
+        "헌혈 내역",
+        style: kNanumLight.copyWith(fontSize: 20, color: kLightBlack),
+      ),
+    ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -44,6 +44,7 @@ class _BloodDonationPageState extends State<BloodDonationPage> {
                 itemBuilder: (context, int index) {
                   return ItemContainer(
                     text: "안녕하세요 저는 황현비니예요.",
+                    imageURL: 'assets/images/bloodred.png',
                   );
                 },
               ),
