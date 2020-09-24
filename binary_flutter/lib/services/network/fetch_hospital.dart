@@ -42,6 +42,7 @@ Future<HospitalModel> fetchHospital(String name) async {
 Future<int> fetchDogs(String userId, String dogIdx, String bhospitalIdx,
     String bloodType, String time, String date) async {
   try {
+    print(dogIdx);
     final response = await client.post("$baseUrl/breserve/",
         body: json.encode({
           "userId": userId,

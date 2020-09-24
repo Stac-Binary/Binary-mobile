@@ -9,14 +9,14 @@ class DogModel {
 }
 
 class DogData {
-  final String id;
+  final int id;
   final String dogName;
   final String breed;
   final String weight;
   final String bloodType;
   DogData({this.id, this.dogName, this.breed, this.weight, this.bloodType});
   factory DogData.fromJson(Map<String, dynamic> json) => DogData(
-        id: json["id"],
+        id: json["idx"],
         dogName: json["dogName"],
         breed: json["breed"],
         weight: "${json["weight"]}",

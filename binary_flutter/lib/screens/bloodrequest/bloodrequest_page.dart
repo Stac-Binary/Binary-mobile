@@ -221,7 +221,7 @@ class _RequestBloodLasterState extends State<RequestBloodLaster> {
                                         .model
                                         .data
                                         .id,
-                                    item.dogs[item.selected].id,
+                                    item.dogs[item.selected].id.toString(),
                                     BloodGlobal.selectedIdx.toString(),
                                     item.dogs[item.selected].bloodType,
                                     BloodGlobal.time,
