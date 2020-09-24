@@ -1,5 +1,4 @@
 import 'package:binary_flutter/constants/constants.dart';
-import 'package:binary_flutter/screens/home/body.dart';
 import 'package:binary_flutter/services/sizes/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
@@ -8,75 +7,93 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  TabController _tabController;
-
-  int _currentTabIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    // init the TabController
-    // _tabController = TabController(length: _Tab.values.length, vsync: null);
-  }
-
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: Icon(
-          Icons.menu,
-          color: kLightBlack,
+    return Stack(
+      overflow: Overflow.visible,
+      children: <Widget>[
+        Positioned(
+          child: Container(
+            color: kPink,
+            width: SizeConfig.screenWidth,
+            height: getProportionateScreenHeight(200),
+          ),
         ),
-        title: Text("풍원이",
-            style: kNanumLight.copyWith(fontSize: 20, color: kLightBlack)),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        onTap: (int index) {
-          setState(() {
-            _currentTabIndex = index;
-          });
-          // _tabController.animateTo(index);
-        },
-        items: _Tab.values
-            .map(
-              (_Tab tab) => BottomNavigationBarItem(
-                title: Text("필요없는 타이틀"),
-                icon: Image.asset(_getAssetForTab(tab),
-                    width: getProportionateScreenWidth(24),
-                    height: getProportionateScreenHeight(24)),
-              ),
-            )
-            .toList(),
-      ),
-      backgroundColor: kWhite,
-      body: HomeBody(),
+        Positioned(
+          child: CircleAvatar(
+            radius: 42.0,
+            backgroundImage: AssetImage(
+              'assets/images/colde.jpg',
+            ),
+          ),
+          left: getProportionateScreenWidth(50),
+          top: getProportionateScreenHeight(46),
+        ),
+        Positioned(
+          child: getDogData("풍원이", "리트리버", "DEA 1.1"),
+          right: getProportionateScreenWidth(80),
+          top: getProportionateScreenHeight(50),
+        ),
+        Positioned(
+          child: Container(
+            child: Image.asset('assets/images/mainimage.png'),
+          ),
+          left: getProportionateScreenWidth(32),
+          top: getProportionateScreenHeight(150),
+        ),
+      ],
     );
   }
 
-  String _getAssetForTab(_Tab tab) {
-    final active = tab == _Tab.values[_currentTabIndex];
-
-    if (tab == _Tab.calendar) {
-      return active
-          ? 'assets/images/calendarred.png'
-          : 'assets/images/calendar.png';
-    } else if (tab == _Tab.blood) {
-      return active ? 'assets/images/bloodred.png' : 'assets/images/blood.png';
-    } else if (tab == _Tab.home) {
-      return active ? 'assets/images/homered.png' : 'assets/images/home.png';
-    } else if (tab == _Tab.health){
-      return active ? 'assets/images/healthred.png' : 'assets/images/health.png';
-    }
-      return active
-          ? 'assets/images/locationred.png'
-          : 'assets/images/location.png';
+  Widget getDogData(String dogName, String dogBreed, String dogBloodType) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            dogName,
+            style: kNanumExtraBold.copyWith(fontSize: 24, color: kWhite),
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                dogBreed,
+                style: kNanumBold.copyWith(fontSize: 16, color: kWhite),
+              ),
+              SizedBox(
+                width: getProportionateScreenWidth(10),
+              ),
+              Text(
+                dogBloodType,
+                style: kNanumBold.copyWith(fontSize: 16, color: kWhite),
+              ),
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "견종",
+                style: kNanumLight.copyWith(fontSize: 12, color: kWhite),
+              ),
+              SizedBox(
+                width: getProportionateScreenWidth(46),
+              ),
+              Text(
+                "혈액형",
+                style: kNanumLight.copyWith(fontSize: 12, color: kWhite),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
-}
 
-enum _Tab { calendar, blood, home, health, location }
+  @override
+  bool get wantKeepAlive => true;
+}
