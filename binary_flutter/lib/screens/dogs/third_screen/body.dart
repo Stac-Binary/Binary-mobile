@@ -1,9 +1,7 @@
 import 'package:binary_flutter/components/rounded_button.dart';
-import 'package:binary_flutter/provider/login_provider.dart';
 import 'package:binary_flutter/screens/register/choice/body.dart';
 import 'package:binary_flutter/services/network/fetch_dogs.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 import '../../../services/sizes/sizeConfig.dart';
@@ -12,8 +10,9 @@ class Body extends StatelessWidget {
   final String name;
   final String breed;
   final String weight;
+  final String id;
   final String dea;
-  Body({this.name, this.breed, this.weight, this.dea});
+  Body({this.name, this.breed, this.weight, this.dea, this.id});
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -50,15 +49,8 @@ class Body extends StatelessWidget {
           RoundedButton(
             text: "다음",
             press: () async {
-              final response = await fetchDogs(
-                  Provider.of<LoginProvider>(context, listen: false)
-                      .model
-                      .data
-                      .id,
-                  name,
-                  breed,
-                  weight,
-                  double.parse(dea));
+              final response =
+                  await fetchDogs(id, name, breed, weight, double.parse(dea));
               if (response.data != null)
                 Navigator.pushAndRemoveUntil(
                     context,

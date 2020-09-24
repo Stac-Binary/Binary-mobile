@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterComplete extends StatelessWidget {
+  final String id;
   final int type;
   final List<String> strs;
   final List<String> strs2;
-  RegisterComplete(this.type, this.strs, this.strs2);
+  RegisterComplete(this.id, this.type, this.strs, this.strs2);
   @override
   Widget build(BuildContext context) {
     print(type);
@@ -15,7 +16,7 @@ class RegisterComplete extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.delayed(Duration(seconds: 1), () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (ctx) => DogRegisterFirst()));
+            context, MaterialPageRoute(builder: (ctx) => DogRegisterFirst(id)));
       });
     });
     return Scaffold(

@@ -6,7 +6,7 @@ final client = http.Client();
 final baseUrl = "http://10.80.161.119:8000/api";
 
 Future<int> fetchRegister(
-    String id, String pw, String name, String address) async {
+    String id, String pw, String name, String address, String email) async {
   try {
     final response = await client.post("$baseUrl/auth/register",
         body: json.encode({
@@ -14,6 +14,7 @@ Future<int> fetchRegister(
           "pw": pw,
           "name": name,
           "address": address,
+          "email": email,
         }),
         headers: {"Content-Type": "application/json"});
     print("$id $pw $name $address");

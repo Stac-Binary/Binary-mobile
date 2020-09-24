@@ -7,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../services/sizes/sizeConfig.dart';
 
 class Body extends StatelessWidget {
+  final String id;
+  Body(this.id);
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -40,8 +42,10 @@ class Body extends StatelessWidget {
               RoundedButton(
                 text: "등록하기",
                 press: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (ctx) => DogRegisterSecond()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (ctx) => DogRegisterSecond(id)));
                 },
               )
             ],
