@@ -1,4 +1,5 @@
 import 'package:binary_flutter/components/rounded_button.dart';
+import 'package:binary_flutter/screens/login/login_screen.dart';
 import 'package:binary_flutter/screens/register/first_input/first_input_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -35,7 +36,6 @@ class _BodyState extends State<Body> {
                       "용도를 선택해주세요",
                       style: TextStyle(
                         fontSize: 15,
-                        fontWeight: FontWeight.bold,
                         color: Color(0xFF707070),
                       ),
                     ),
@@ -87,15 +87,32 @@ class _BodyState extends State<Body> {
                   )
                 ],
               ),
-              RoundedButton(
-                text: "다음",
-                press: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (ctx) => FirstInputScreen(selected)));
-                },
-              )
+              Column(
+                children: [
+                  RoundedButton(
+                    text: "다음",
+                    press: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ctx) => FirstInputScreen(selected)));
+                    },
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (ctx) => LoginScreen()));
+                    },
+                    child: Text(
+                      "로그인 화면으로 돌아가기",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF707070),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),
@@ -127,14 +144,14 @@ class ImageCard extends StatelessWidget {
         border: selected
             ? Border.all(
                 color: color,
-                width: 2,
+                width: 0.5,
               )
             : null,
         boxShadow: [
           BoxShadow(
-            color: Color(0x30000000),
+            color: Color(0x20000000),
             offset: Offset(0, 0),
-            blurRadius: 20,
+            blurRadius: 10,
             spreadRadius: 2,
           ),
         ],
