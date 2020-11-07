@@ -61,9 +61,9 @@ class _BodyState extends State<Body> {
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x30000000),
+                                    color: Color(0x20000000),
                                     offset: Offset(0, 0),
-                                    blurRadius: 20,
+                                    blurRadius: 10,
                                     spreadRadius: 2,
                                   ),
                                 ]),

@@ -62,7 +62,13 @@ class RoundedTextField extends StatelessWidget {
     Key key,
     @required this.hintText,
     @required this.controller,
+    this.filled,
+    this.hintColor,
+    this.bold,
   }) : super(key: key);
+  final Color hintColor;
+  final bool filled;
+  final bool bold;
   final String hintText;
   final TextEditingController controller;
   @override
@@ -79,12 +85,13 @@ class RoundedTextField extends StatelessWidget {
         ),
         controller: controller,
         decoration: InputDecoration(
-          filled: false,
+          fillColor: Colors.white,
+          filled: filled ?? false,
           hintText: hintText,
           hintStyle: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFFFFC7C7),
+            fontWeight: bold ? FontWeight.bold : FontWeight.w100,
+            color: hintColor ?? Color(0xFFFFC7C7),
           ),
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
           border: kInputBorderStyle,
@@ -104,7 +111,13 @@ class RoundedPasswordField extends StatefulWidget {
     Key key,
     @required this.hintText,
     @required this.controller,
+    this.filled,
+    this.hintColor,
+    this.bold,
   }) : super(key: key);
+  final Color hintColor;
+  final bool filled;
+  final bool bold;
   final String hintText;
   final TextEditingController controller;
   @override
@@ -135,6 +148,8 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         ),
         controller: widget.controller,
         decoration: InputDecoration(
+          filled: widget.filled ?? false,
+          fillColor: Colors.white,
           suffixIconConstraints: BoxConstraints(
             maxWidth: getProportionateScreenWidth(30),
           ),
@@ -158,8 +173,8 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
           hintText: widget.hintText,
           hintStyle: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFFFFC7C7),
+            fontWeight: widget.bold ? FontWeight.bold : FontWeight.w100,
+            color: widget.hintColor ?? Color(0xFFFFC7C7),
           ),
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
           border: kInputBorderStyle,

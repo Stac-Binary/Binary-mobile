@@ -19,9 +19,7 @@ class Body extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xFFFF6666)
-              ),
+              decoration: BoxDecoration(color: Color(0xFFFF6666)),
             ),
           ),
           SafeArea(
@@ -45,22 +43,45 @@ class Body extends StatelessWidget {
                     ],
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: getProportionateScreenHeight(10)),
+                        child: Text(
+                          "I D",
+                          style: GoogleFonts.montserrat(fontSize: 12),
+                        ),
+                      ),
                       RoundedTextField(
+                        filled: true,
+                        hintColor: Colors.grey,
+                        bold: false,
                         hintText: "아이디를 입력하세요.",
                         controller: idController,
                       ),
                       SizedBox(
                         height: getProportionateScreenHeight(20),
                       ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: getProportionateScreenHeight(10)),
+                        child: Text(
+                          "P A S S",
+                          style: GoogleFonts.montserrat(fontSize: 12),
+                        ),
+                      ),
                       RoundedPasswordField(
+                        filled: true,
+                        hintColor: Colors.grey,
+                        bold: false,
                         hintText: "비밀번호를 입력하세요.",
                         controller: pwController,
                       ),
                       SizedBox(
                         width: double.infinity,
                         child: Text(
-                          "아이디/비밀번호를 잊어버리셨나요?",
+                          "비밀번호를 잊어버리셨나요?",
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.white,

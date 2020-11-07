@@ -5,6 +5,8 @@ import 'package:binary_flutter/screens/dogs/second_screen/dog_register_second.da
 import 'package:binary_flutter/screens/login/login_screen.dart';
 import 'package:binary_flutter/screens/route_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -49,8 +51,19 @@ class Body extends StatelessWidget {
               Provider.of<LoginProvider>(context, listen: false).model.data.id);
         if (item.status == DogStatus.error) return Text("Request to manager");
         return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
+          backgroundColor: Color(0xFFFF6666),
+          body: Column(
+            children: [
+              SvgPicture.asset("assets/images/icon.svg"),
+              Text(
+                "B I N A R Y",
+                style: GoogleFonts.montserrat(
+                  fontSize: 40,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         );
       },

@@ -1,5 +1,6 @@
 import 'package:binary_flutter/components/rounded_button.dart';
 import 'package:binary_flutter/components/text_fields.dart';
+import 'package:binary_flutter/screens/login/login_screen.dart';
 import 'package:binary_flutter/screens/register/choice/body.dart';
 import 'package:binary_flutter/screens/register/complete/register_complete.dart';
 import 'package:binary_flutter/services/network/fetch_register.dart';
@@ -75,34 +76,51 @@ class _BodyState extends State<Body> {
                     controller: controllers[2]),
               ],
             ),
-            RoundedButton(
-              text: "확인",
-              press: !enabled
-                  ? null
-                  : () async {
-                      print("ASDF");
-                      enabled = false;
-                      final response = await fetchRegister(
-                        controllers[0].text,
-                        controllers[1].text,
-                        widget.strs[0],
-                        widget.strs[3],
-                        widget.strs[1],
-                      );
-                      print("ASDF");
-                      print(response);
-                      if (response == 200)
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (ctx) => RegisterComplete(
-                                controllers[0].text,
-                                widget.type,
-                                widget.strs,
-                                controllers.map((e) => e.text).toList()),
-                          ),
-                        );
-                    },
+            Column(
+              children: [
+                RoundedButton(
+                  text: "확인",
+                  press: !enabled
+                      ? null
+                      : () async {
+                          print("ASDF");
+                          enabled = false;
+                          final response = await fetchRegister(
+                            controllers[0].text,
+                            controllers[1].text,
+                            widget.strs[0],
+                            widget.strs[3],
+                            widget.strs[1],
+                          );
+                          print("ASDF");
+                          print(response);
+                          if (response == 200)
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (ctx) => RegisterComplete(
+                                    controllers[0].text,
+                                    widget.type,
+                                    widget.strs,
+                                    controllers.map((e) => e.text).toList()),
+                              ),
+                            );
+                        },
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (ctx) => LoginScreen()));
+                  },
+                  child: Text(
+                    "로그인 화면으로 돌아가기",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF707070),
+                    ),
+                  ),
+                )
+              ],
             )
           ],
         ),

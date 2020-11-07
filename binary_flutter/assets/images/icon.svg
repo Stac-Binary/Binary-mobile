@@ -1,0 +1,19 @@
+<svg id="그룹_265" data-name="그룹 265" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="75.834" height="75.834" viewBox="0 0 75.834 75.834">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="1.919" gradientTransform="matrix(0.687, 0.727, -0.668, 0.631, 0.491, -0.179)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f4b183"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+  </defs>
+  <g id="그룹_246" data-name="그룹 246">
+    <g id="그룹_163" data-name="그룹 163">
+      <path id="합치기_1" data-name="합치기 1" d="M15.532,65.345a5,5,0,0,1-5-5V27.683a9.568,9.568,0,0,1-1.061.059A9.47,9.47,0,1,1,11.49,9.017a9.47,9.47,0,0,1,18.919,0,9.47,9.47,0,1,1,.958,18.666V60.345a5,5,0,0,1-5,5Z" transform="translate(0 29.627) rotate(-45)" fill="#fff"/>
+      <rect id="사각형_17" data-name="사각형 17" width="39.775" height="15.153" rx="4" transform="translate(23.519 51.645) rotate(-45)" fill="url(#radial-gradient)"/>
+      <rect id="사각형_18" data-name="사각형 18" width="15.153" height="11.26" rx="3" transform="translate(33.56 44.275) rotate(-45)" fill="#fff"/>
+      <circle id="타원_7" data-name="타원 7" cx="5.682" cy="5.682" r="5.682" transform="translate(11.58 35.851) rotate(-45)" fill="#fbe5d6"/>
+      <circle id="타원_8" data-name="타원 8" cx="5.682" cy="5.682" r="5.682" transform="translate(13.474 21.511) rotate(-45)" fill="#fbe5d6"/>
+      <circle id="타원_9" data-name="타원 9" cx="5.682" cy="5.682" r="5.682" transform="translate(27.815 19.616) rotate(-45)" fill="#fbe5d6"/>
+      <path id="icon" d="M2.086,3.5C3,2.037,4.407.25,5.356.026a.74.74,0,0,1,.874.384A13.078,13.078,0,0,0,7.674,2.664c.353.47.776.949,1.224,1.456,1.3,1.472,2.774,3.14,2.774,5.045A5.836,5.836,0,0,1,0,9.164C0,7.057,1.458,4.5,2.086,3.5Zm0,0" transform="matrix(0.819, 0.574, -0.574, 0.819, 18.357, 45.009)" fill="#c00000"/>
+    </g>
+  </g>
+</svg>

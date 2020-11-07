@@ -1,5 +1,6 @@
 import 'package:binary_flutter/components/rounded_button.dart';
 import 'package:binary_flutter/components/text_fields.dart';
+import 'package:binary_flutter/screens/login/login_screen.dart';
 import 'package:binary_flutter/screens/register/choice/body.dart';
 import 'package:binary_flutter/screens/register/second_input/second_input_screen.dart';
 import 'package:flutter/material.dart';
@@ -95,21 +96,38 @@ class _BodyState extends State<Body> {
                 ),
               ],
             ),
-            RoundedButton(
-              text: "다음",
-              press: !enabled
-                  ? null
-                  : () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => SecondInputScreen(
-                            type: widget.selected,
-                            strs: controllers.map((e) => e.text).toList(),
-                          ),
-                        ),
-                      );
-                    },
+            Column(
+              children: [
+                RoundedButton(
+                  text: "다음",
+                  press: !enabled
+                      ? null
+                      : () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => SecondInputScreen(
+                                type: widget.selected,
+                                strs: controllers.map((e) => e.text).toList(),
+                              ),
+                            ),
+                          );
+                        },
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (ctx) => LoginScreen()));
+                  },
+                  child: Text(
+                    "로그인 화면으로 돌아가기",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF707070),
+                    ),
+                  ),
+                )
+              ],
             )
           ],
         ),
