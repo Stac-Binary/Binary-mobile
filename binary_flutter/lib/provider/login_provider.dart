@@ -56,19 +56,4 @@ class LoginProvider extends ChangeNotifier {
         status = Status.unauth;
     } on Exception {}
   }
-
-  Future<void> dbgsignIn(String id, String pw) async {
-    try {
-      status = Status.loading;
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      pref.setString("id", id);
-      pref.setString("pw", pw);
-      pref.setString("name", "DEBUG");
-      pref.setString("address", "DEBUG");
-      _model = UserModel(
-        data: UserData(id: id, pw: pw, name: "DEBUG", address: "DEBUG"),
-      );
-      status = Status.auth;
-    } on Exception {}
-  }
 }

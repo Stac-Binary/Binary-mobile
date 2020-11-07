@@ -99,7 +99,7 @@ class Body extends StatelessWidget {
                           final id = idController.text;
                           final pw = pwController.text;
                           Provider.of<LoginProvider>(context, listen: false)
-                              .dbgsignIn(id, pw);
+                              .signIn(id, pw);
                         },
                       ),
                       GestureDetector(

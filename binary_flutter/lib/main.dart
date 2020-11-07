@@ -52,18 +52,24 @@ class Body extends StatelessWidget {
         if (item.status == DogStatus.error) return Text("Request to manager");
         return Scaffold(
           backgroundColor: Color(0xFFFF6666),
-          body: Column(
-            children: [
-              SvgPicture.asset("assets/images/icon.svg"),
-              Text(
-                "B I N A R Y",
-                style: GoogleFonts.montserrat(
-                  fontSize: 40,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+          body: SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset("assets/images/icon.svg"),
+                Text(
+                  "B I N A R Y",
+                  style: GoogleFonts.montserrat(
+                    fontSize: 40,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
