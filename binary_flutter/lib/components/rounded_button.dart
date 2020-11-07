@@ -1,3 +1,4 @@
+import 'package:binary_flutter/services/sizes/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -13,13 +14,13 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: getProportionateScreenWidth(300),
       child: MaterialButton(
         elevation: 0,
         color: color ?? Color(0xFFFD7C7C),
         textColor: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(90),
+          borderRadius: BorderRadius.circular(8),
         ),
         onPressed: press,
         disabledColor: color ?? Color(0x55FD7C7C),
