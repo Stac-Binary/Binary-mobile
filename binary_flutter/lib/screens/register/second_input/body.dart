@@ -119,6 +119,21 @@ class _BodyState extends State<Body> {
                       color: Color(0xFF707070),
                     ),
                   ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => RegisterComplete(
+                            controllers[0].text,
+                            widget.type,
+                            widget.strs,
+                            controllers.map((e) => e.text).toList()),
+                      ),
+                    );
+                  },
+                  child: Text("ASDF"),
                 )
               ],
             )

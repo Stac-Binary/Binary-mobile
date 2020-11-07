@@ -1,6 +1,6 @@
+import 'package:binary_flutter/components/success_view.dart';
 import 'package:binary_flutter/screens/dogs/first_screen/dog_register_first.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterComplete extends StatelessWidget {
   final String id;
@@ -14,7 +14,7 @@ class RegisterComplete extends StatelessWidget {
     print(strs);
     print(strs2);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(Duration(seconds: 2), () {
         Navigator.push(
             context, MaterialPageRoute(builder: (ctx) => DogRegisterFirst(id)));
       });
@@ -25,7 +25,7 @@ class RegisterComplete extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SvgPicture.asset("assets/images/complete_register.svg"),
+            SuccessView(),
             Text(
               "회원가입이 완료되었습니다.",
               style: TextStyle(
