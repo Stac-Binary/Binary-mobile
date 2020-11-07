@@ -1,5 +1,6 @@
 import 'package:binary_flutter/constants/constants.dart';
 import 'package:binary_flutter/provider/dog_provider.dart';
+import 'package:binary_flutter/provider/login_provider.dart';
 import 'package:binary_flutter/screens/blooddonation/blood_donation_page.dart';
 import 'package:binary_flutter/screens/bloodrequest/bloodrequest_page.dart';
 import 'package:binary_flutter/screens/bloodtrace/bloodtrace_page.dart';
@@ -89,11 +90,14 @@ class _RoutePageState extends State<RoutePage> {
                 backgroundColor: kWhite,
               ),
               accountName: Text(
-                "박상아",
+                Provider.of<LoginProvider>(context, listen: false)
+                    .model
+                    .data
+                    .name,
                 style: kNanumExtraBold.copyWith(fontSize: 20),
               ),
               accountEmail: Text(
-                "minseocho0309@gmail.com",
+                "dgsw@gmail.com",
                 style: kNanumBold.copyWith(fontSize: 16),
               ),
               onDetailsPressed: () {

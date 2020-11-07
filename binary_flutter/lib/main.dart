@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: DogProvider())
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(appBarTheme: AppBarTheme(color: kWhite)),
         title: 'ASDF',
         home: Consumer<LoginProvider>(builder: (ctx, item, _) {
