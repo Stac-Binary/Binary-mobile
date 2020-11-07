@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../services/sizes/sizeConfig.dart';
 
 const kInputBorderStyle = OutlineInputBorder(
-  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+  borderRadius: BorderRadius.all(Radius.circular(8.0)),
   borderSide: BorderSide(color: Colors.white, width: 0.5),
 );
 const kInputBorderStyle2 = OutlineInputBorder(
