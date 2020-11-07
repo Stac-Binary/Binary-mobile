@@ -3,6 +3,7 @@ import 'package:binary_flutter/components/rounded_input_field.dart';
 import 'package:binary_flutter/provider/login_provider.dart';
 import 'package:binary_flutter/screens/register/choice/register_choice.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/sizes/sizeConfig.dart';
@@ -19,14 +20,7 @@ class Body extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFF9C9C),
-                    Color(0xFFFF5050),
-                  ],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                ),
+                color: Color(0xFFFF6666)
               ),
             ),
           ),
@@ -41,10 +35,11 @@ class Body extends StatelessWidget {
                     children: [
                       Image.asset("assets/images/handicon.png"),
                       Text(
-                        "비나리",
-                        style: TextStyle(
+                        "B I N A R Y",
+                        style: GoogleFonts.montserrat(
                           fontSize: 40,
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
